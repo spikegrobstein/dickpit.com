@@ -101,6 +101,7 @@
   var keyboard_driver = new KeyboardDriver(gameController.message_bus);
 
   gameController.message_bus.subscribe( 'before_step_frame', function() {
+    if ( gameController.ticks % 100 != 0 ) { return }
     globals.centerX = gameController.element.offsetWidth / 2 - 75;
     globals.centerY = gameController.element.offsetHeight / 2 - 75;
   });
