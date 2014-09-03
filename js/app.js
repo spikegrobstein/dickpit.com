@@ -72,6 +72,11 @@
 
   globals.dickCount = 10;
 
+  function randomDickClass() {
+    var classes = [ 'dick1', 'dick2', 'dick3' ];
+    return classes[Math.round(Math.random() * classes.length)];
+  }
+
   var i = 0,
       j = 0;
 
@@ -88,7 +93,7 @@
             use_rotation: false
           });
 
-      dick_ele.setAttribute('class', 'dick');
+      dick_ele.setAttribute('class', 'dick ' + randomDickClass());
       dick.index = dickIndex;
       dick.distance = distance + Math.random() * 20;
       dick.modifier = 0.015 + (Math.random() - 0.5) / 100;
