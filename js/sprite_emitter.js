@@ -23,6 +23,8 @@
     this.speed_splay = U.default_param( options.speed_splay, 0 );
 
     this.life = U.default_param( options.life, 3000 );
+
+    this.elementClass = U.default_param( options.elementClass, 'dick' );
   };
 
   SpriteEmitter.prototype.setMessageBus = function( new_message_bus ) {
@@ -50,7 +52,7 @@
     var i = 0;
     for ( i = 0; i < this.concurrency; i++ ) {
       var element = document.createElement('div');
-      element.setAttribute('class', 'rocket');
+      element.setAttribute('class', this.elementClass);
       // this.controller.element.appendChild( element );
 
       var sprite = new Sprite( element, { x:this.x, y:this.y, use_rotation:true, tags: this.tags } );

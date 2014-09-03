@@ -2,24 +2,30 @@
 
   var gameController = new GameController( document.getElementById('dickpit') );
 
-  globals.gravity = 0.1;
-  globals.centerX = gameController.element.offsetWidth / 2 - 75;
-  globals.centerY = gameController.element.offsetHeight / 2 - 75;
+  globals.gravity = 0.2;
+  globals.width = gameController.element.offsetWidth;
+  globals.height = gameController.element.offsetHeight;
+  globals.centerX = width / 2 - 75;
+  globals.centerY = height / 2 - 75;
   globals.distance = 200;
 
   gameController
     .addBehavior( 'throbber', 'throbber', function() {
 
     } )
-    .addBehavior( 'gravity-effect', 'dick', function() {
+    .addBehavior( 'gravity-effect', 'bouncing-dick', function() {
 
       var g = globals.gravity;
-      // this.velocity_y += g;
+      this.velocity_y += g;
 
+      if ( this.y > globals.height + 200) {
+        // delete the sprite
+        gameController.sprite_store.deleteSprite(this);
+      }
     } )
     .addBehavior( 'rotation', 'dick', function() {
       this.distance = this.baseDistance + Math.sin(globals.gameController.ticks / 10 + this.index) * 20;
-      this.index += .015;
+      this.index += this.modifier;
 
       this.move_to(
         globals.centerX + this.distance * Math.sin( this.index ),
@@ -29,20 +35,40 @@
       this.setSpriteRotation( U.Math.rad2deg( this.index ));
     } );
 
-  var emitter = new SpriteEmitter( gameController, {
-    tags: [ 'bouncer' ],
-    angle:35,
-    speed: 10,
-    rate: 1,
-    concurrency: 2,
-    splay: 30,
-    speed_splay: 2,
-    life: 5000,
-    max: 100,
-    x:300,
-    y:220 } );
+  var emitter1 = new SpriteEmitter( gameController, {
+        tags: [ 'bouncing-dick' ],
+        elementClass: 'little-dick',
+        angle: -90,
+        speed: 20,
+        rate: 1,
+        concurrency: 2,
+        splay: 30,
+        speed_splay: 2,
+        life: 5000,
+        max: 20,
+        x: 200,
+        y: globals.height - 200 } ),
 
-  // gameController.addEmitter( emitter );
+      emitter2 = new SpriteEmitter( gameController, {
+        tags: [ 'bouncing-dick' ],
+        elementClass: 'little-dick',
+        angle: -90,
+        speed: 20,
+        rate: 1,
+        concurrency: 2,
+        splay: 30,
+        speed_splay: 2,
+        life: 5000,
+        max: 20,
+        x: globals.width - 200,
+        y: globals.height - 200
+      } );
+
+  emitter1.count = 100;
+  emitter2.count = 100;
+
+  gameController.addEmitter( emitter1 );
+  gameController.addEmitter( emitter2 );
 
   globals.dickCount = 10;
 
@@ -65,6 +91,7 @@
       dick_ele.setAttribute('class', 'dick');
       dick.index = dickIndex;
       dick.distance = distance + Math.random() * 20;
+      dick.modifier = 0.015 + (Math.random() - 0.5) / 100;
       dick.baseDistance = distance;
       dick.setSpriteRotation( U.Math.rad2deg(dick.index) );
       gameController.addSprite( dick );
@@ -137,6 +164,8 @@
 
   keyboard_driver.handle( ' ', function() {
     gameController.message_bus.publish( 'dick-blast' );
+    emitter1.count = 0;
+    emitter2.count = 0;
     console.log('dick blast!');
   });
 
