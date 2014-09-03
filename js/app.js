@@ -97,63 +97,6 @@
       gameController.addSprite( dick );
     }
   }
-  // for ( i = 0; i < globals.dickCount; i++ ) {
-    // var dick_ele = document.createElement('div');
-    // dick_ele.setAttribute('class', 'dick');
-    // var dickIndex = ( 2 * Math.PI ) / globals.dickCount * i,
-        // dick = new Sprite( dick_ele, {
-          // x: globals.centerX + globals.distance * Math.sin( dickIndex ),
-          // y: globals.centerY + globals.distance * Math.cos( dickIndex ),
-          // tags: ['dick'],
-          // use_rotation: false
-        // });
-
-    // dick.index = dickIndex;
-    // dick.distance = globals.distance;
-    // dick.baseDistance = globals.distance;
-    // dick.setSpriteRotation( U.Math.rad2deg(dick.index) );
-    // gameController.addSprite( dick );
-  // }
-
-  // globals.dickCount += 5;
-
-  // for ( i = 0; i < globals.dickCount; i++ ) {
-    // var dick_ele = document.createElement('div');
-    // dick_ele.setAttribute('class', 'dick');
-    // var dickIndex = ( 2 * Math.PI ) / globals.dickCount * i,
-        // dick = new Sprite( dick_ele, {
-          // x: globals.centerX + globals.distance * Math.sin( dickIndex ),
-          // y: globals.centerY + globals.distance * Math.cos( dickIndex ),
-          // tags: ['dick'],
-          // use_rotation: false
-        // });
-
-    // dick.index = dickIndex;
-    // dick.distance = globals.distance + 100;
-    // dick.baseDistance = globals.distance + 100;
-    // dick.setSpriteRotation( U.Math.rad2deg(dick.index) );
-    // gameController.addSprite( dick );
-  // }
-
-  // globals.dickCount += 10;
-
-  // for ( i = 0; i < globals.dickCount; i++ ) {
-    // var dick_ele = document.createElement('div');
-    // dick_ele.setAttribute('class', 'dick');
-    // var dickIndex = ( 2 * Math.PI ) / globals.dickCount * i,
-        // dick = new Sprite( dick_ele, {
-          // x: globals.centerX + globals.distance * Math.sin( dickIndex ),
-          // y: globals.centerY + globals.distance * Math.cos( dickIndex ),
-          // tags: ['dick'],
-          // use_rotation: false
-        // });
-
-    // dick.index = dickIndex;
-    // dick.distance = globals.distance + 200;
-    // dick.baseDistance = globals.distance + 200;
-    // dick.setSpriteRotation( U.Math.rad2deg(dick.index) );
-    // gameController.addSprite( dick );
-  // }
 
   var keyboard_driver = new KeyboardDriver(gameController.message_bus);
 
