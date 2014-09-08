@@ -118,6 +118,13 @@
     console.log('dick blast!');
   });
 
+  gameController.element.addEventListener("touchstart", function() {
+    gameController.message_bus.publish( 'dick-blast' );
+    emitter1.count = 0;
+    emitter2.count = 0;
+    console.log('dick blast!');
+  }, false);
+
   // attach some shit to the main window
   globals.keyboard_driver = keyboard_driver;
   globals.gameController = gameController;
