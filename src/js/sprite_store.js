@@ -1,5 +1,3 @@
-import HashSet from 'hashset'
-
 // stores and manages sprites
 // interface for doing sprite queries
 // nth sprite -- fast based on array index
@@ -17,7 +15,7 @@ import HashSet from 'hashset'
 var SpriteStore = function( message_bus ) {
   this.message_bus = message_bus;
 
-  this._sprites = new HashSet(); // HashSet of sprites we're managing
+  this._sprites = new Set(); // HashSet of sprites we're managing
   this._index = {};   // hash of HashSets keyed by tag
 
   this.message_bus.subscribe( 'sprite_tag_added', this.handleSpriteTagAdded.bind(this) );
@@ -27,11 +25,6 @@ var SpriteStore = function( message_bus ) {
 // returns the number of sprites in storage
 SpriteStore.prototype.count = function() {
   return this._sprites.size();
-};
-
-// given a zero-based index, return that sprite from storage
-SpriteStore.prototype.getSprite = function( index ) {
-  return this._sprites.toArray()[index];
 };
 
 // given a Sprite object, add that sprite to storage
@@ -56,16 +49,16 @@ SpriteStore.prototype.spritesWithTag = function( tag ) {
     return [];
   }
 
-  return sprites.toArray();
+  return sprites;
 }
 
 // given a Sprite object, delete it from storage
 SpriteStore.prototype.deleteSprite = function( sprite ) {
-  this._sprites.remove( sprite );
+  this._sprites.delete( sprite );
 
   var tag;
   for ( tag in sprite.tags ) {
-    this._index[tag].remove( sprite );
+    this._index[tag].delete( sprite );
   }
 
   this.message_bus.publish( 'sprite_deleted', { store: this, sprite: sprite } );
@@ -76,7 +69,7 @@ SpriteStore.prototype.deleteSprite = function( sprite ) {
 // given a tag and a sprite, add given sprite to the tag index
 SpriteStore.prototype.addSpriteToTags = function( sprite, tag ) {
   if ( typeof this._index[tag] === 'undefined' ) {
-    this._index[tag] = new HashSet();
+    this._index[tag] = new Set();
   }
 
   this._index[tag].add( sprite );
@@ -89,7 +82,7 @@ SpriteStore.prototype.deleteSpriteFromTags = function( sprite, tag ) {
     return this;
   }
 
-  this._index[tag].remove( sprite );
+  this._index[tag].delete( sprite );
 };
 
 SpriteStore.prototype.handleSpriteTagAdded = function( type, payload ) {
@@ -107,12 +100,9 @@ SpriteStore.prototype.handleSpriteTagRemoved = function( type, payload ) {
 };
 
 SpriteStore.prototype.removeDeadSprites = function() {
-  var sprite,
-      all_sprites = this._sprites.toArray();
+  var sprite;
 
-  for ( sprite in all_sprites ) {
-    sprite = all_sprites[sprite];
-
+  for ( sprite of this._sprites) {
     if ( sprite.dead ) {
       this.deleteSprite( sprite );
     }

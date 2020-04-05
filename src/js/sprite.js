@@ -155,7 +155,7 @@ Sprite.prototype.speed = function() {
 
 // given an angle and speed, set the x/y velocities
 Sprite.prototype.setAngle = function( angle, speed ) {
-  var angle_radians = U.Math.deg2rad( angle );
+  var angle_radians = U.Math.deg2rad( angle ),
       scale_x = Math.cos( angle_radians ),
       scale_y = Math.sin( angle_radians );
 

@@ -85,7 +85,7 @@ GameController.prototype.step = function(timestamp) {
       i = 0,
       behavior_handler = null,
       behavior_finder = null,
-      all_sprites = this.sprite_store._sprites.toArray(),
+      all_sprites = this.sprite_store._sprites,
       sprite_finder,
       sprites;
 
@@ -100,13 +100,12 @@ GameController.prototype.step = function(timestamp) {
     if ( typeof behavior_finder === 'function' ) {
       sprites = behavior_finder();
     } else if ( typeof behavior_finder === 'string' ) {
-      sprites = this.sprite_store.spritesWithTag( behavior_finder );
+      sprites = this.sprite_store.spritesWithTag( behavior_finder ).values();
     } else {
-      sprites = all_sprites;
+      sprites = all_sprites.values();
     }
 
-    for ( sprite in sprites ) {
-      sprite = sprites[sprite];
+    for ( sprite of sprites ) {
       behavior_handler.call( sprite, this );
     }
   }

@@ -31,7 +31,7 @@ gameController
     }
   } )
   .addBehavior( 'rotation', 'dick', function() {
-    this.distance = this.baseDistance + Math.sin(window.gameController.ticks / 10 + this.index) * 20;
+    this.distance = this.baseDistance + Math.sin(gameController.ticks / 10 + this.index) * 20;
     this.index += this.modifier;
 
     this.move_to(

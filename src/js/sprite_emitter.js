@@ -1,4 +1,5 @@
 import U from './u.js';
+import Sprite from './sprite.js';
 
 // direction, rate, spread, sprite options
 var SpriteEmitter = function( controller, options ) {
