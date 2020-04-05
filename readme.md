@@ -17,5 +17,5 @@ this uses webpack, was built/tested on node 12.x. see `.nvmrc`
 
 Everything is ouptut to `./dist`
 
-&copy;2014 Spike Grobstein
+&copy;2014-2020 Spike Grobstein
 
