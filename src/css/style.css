@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.dick {
+  background-image: url('../images/dick.png');
+  background-size: 150px 150px;
+  width: 150px;
+  height: 150px;
+  position: absolute;
+}
+
+.dick1 {
+  background-image: url('../images/dick.png');
+}
+.dick2 {
+  background-image: url('../images/dick2.png');
+}
+.dick3 {
+  background-image: url('../images/dick3.png');
+}
+
+.little-dick {
+  background-image: url('../images/dick.png');
+  background-size: 75px 75px;
+  width: 75px;
+  height: 75px;
+  position: absolute;
+}
+
+.dickpit-title {
+  background-image: url('../images/dickpit-title.png');
+  background-size: 800px 310px;
+  width: 800px;
+  height: 310px;
+  margin: auto;
+}
+
+#title-container {
+  left: 0;
+  right: 0;
+  text-align: center;
+  position: absolute;
+  top: 200px;
+}
+
+#dickpit {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  position: absolute;
+  overflow: hidden;
+}
+
+#footer {
+  position: absolute;
+  bottom: 20px;
+  color: white;
+  size: .8em;
+  text-align: center;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.4);
+  padding: 20px;
+}
+
+
