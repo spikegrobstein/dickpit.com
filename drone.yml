@@ -30,7 +30,7 @@ steps:
       - echo "$SSH_KEY" > ~/.ssh/id_rsa
       - chmod 600 ~/.ssh/id_rsa
       - echo "dickpit.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDCJhugT3u9pu4M8Mn+S9j3TAP0Kbc+5Le1L6bdMw/HOfo+KYvfaIRMeolmsDQLQ2xuiYlcRYMK/dxLrYdYKCQ/GXK5ZD6+xl27z1j10LZYoh+10T4hdTEtOA/buLZ2+QZjsh6Zb2DFE6y0RzKmX0PhIl6B/VQquXI3f6RzQhmWpmPTZHD7oLBuU6KEkcdKWfQV3CTPBVb2JpExbAAXTNN0dWOUTObRJ9MkozdWZXc3IZb4mw5Pv3K5C4CSfjaMUftDVi8byM0897wHuW1OAhouBnD0nbBye3KrS3CJMVC7zBqgi6jofmw23OKqf1xmsNtM/mbFCEl2UylZZ1NxTUf3" >> ~/.ssh/known_hosts
-      - rsync --delete -avz dist/ spike@dickpit.com:web/sites/dickpit/public/
+      - rsync --delete -avz --exclude '*.map' --exclude '*.LICENSE.txt' dist/ spike@dickpit.com:web/sites/dickpit/public/
     environment:
       SSH_KEY:
         from_secret: SSH_KEY
