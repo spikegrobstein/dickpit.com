@@ -21,7 +21,7 @@ module.exports = {
       filename: 'css/[name].css',
     }),
   ],
-  devtool: 'source-map',
+  devtool: 'hidden-source-map',
   devServer: {
     contentBase: './dist',
   },
